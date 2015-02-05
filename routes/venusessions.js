@@ -25,7 +25,54 @@ function SessionHandler (db) {
         return res.render("login", {username:"", password:"", login_error:""})
     }
 
-   
+    this.handleLoginRequest = function(req, res, next) {
+        "use strict";
+
+        var username = req.body.username;
+        var password = req.body.password;
+
+        console.log("user submitted username: " + username + " pass: " + password);
+
+        users.validateLogin(username, password, function(err, user) {
+            "use strict";
+
+            if (err) {
+                if (err.no_such_user) {
+                    return res.render("login", {username:username, password:"", login_error:"No such user"});
+                }
+                else if (err.invalid_password) {
+                    return res.render("login", {username:username, password:"", login_error:"Invalid password"});
+                }
+                else {
+                    // Some other kind of error
+                    return next(err);
+                }
+            }
+
+            sessions.startSession(user['_id'], function(err, session_id) {
+                "use strict";
+
+                if (err) return next(err);
+
+                res.cookie('session', session_id);
+                return res.redirect('/welcome');
+            });
+        });
+    }
+
+    this.displayLogoutPage = function(req, res, next) {
+        "use strict";
+
+        var session_id = req.cookies.session;
+        sessions.endSession(session_id, function (err) {
+            "use strict";
+
+            // Even if the user wasn't logged in, redirect to home
+            res.cookie('session', '');
+            return res.redirect('/');
+        });
+    }
+
     this.displaySignupPage =  function(req, res, next) {
         "use strict";
         res.render("signup", {username:"", password:"",
