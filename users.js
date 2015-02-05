@@ -73,3 +73,9 @@ function UsersDAO(db) {
 }
 
 module.exports.UsersDAO = UsersDAO;
+module.exports.UsersDAO = UsersDAO;
+
+module.exports.UsersDAO = UsersDAO;
+module.exports.UsersDAO = UsersDAO;module.exports.UsersDAO = UsersDAO;
+module.exports.UsersDAO = UsersDAO;
+
