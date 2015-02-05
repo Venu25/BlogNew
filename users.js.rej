@@ -1,0 +1,11 @@
+diff a/users.js b/users.js	(rejected hunks)
+@@ -73,3 +73,9 @@
+ }
+ 
+ module.exports.UsersDAO = UsersDAO;
++module.exports.UsersDAO = UsersDAO;
++
++module.exports.UsersDAO = UsersDAO;
++module.exports.UsersDAO = UsersDAO;module.exports.UsersDAO = UsersDAO;
++module.exports.UsersDAO = UsersDAO;
++
