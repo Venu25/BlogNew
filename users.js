@@ -7,7 +7,7 @@ function UsersDAO(db) {
     /* If this constructor is called without the "new" operator, "this" points
      * to the global object. Log a warning and call it correctly. */
     if (false === (this instanceof UsersDAO)) {
-        console.log('Warning: UsersDAO constructor called without "new" operator');
+        console.log('Warning: UsersDAO constructor called test save "new" operator');
         return new UsersDAO(db);
     }
 
